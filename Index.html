@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShiRuc News</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #002244;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+
+    main {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .news-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .news-content {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #004488;
+      color: white;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0066cc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #002244;
+      color: white;
+      margin-top: 2rem;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>ShiRuc News</h1>
+  </header>
+
+  <main>
+    <div class="news-card">
+      <div class="news-title">India Launches New Satellite</div>
+      <div class="news-content">ISRO successfully launches a new satellite for Earth observation today at 9 AM.</div>
+      <textarea placeholder="Add a comment..."></textarea>
+      <div class="buttons">
+        <button onclick="alert('Thanks for commenting!')">Comment</button>
+        <button onclick="downloadNews(this)">Download</button>
+      </div>
+    </div>
+
+    <div class="news-card">
+      <div class="news-title">Economy Growth Rate</div>
+      <div class="news-content">India's GDP grows by 7.2% in the last quarter, surpassing expectations.</div>
+      <textarea placeholder="Add a comment..."></textarea>
+      <div class="buttons">
+        <button onclick="alert('Thanks for commenting!')">Comment</button>
+        <button onclick="downloadNews(this)">Download</button>
+      </div>
+    </div>
+
+    <!-- Add more news cards here -->
+  </main>
+
+  <footer>
+    &copy; 2025 ShiRuc News. All rights reserved.
+  </footer>
+
+  <script>
+    function downloadNews(btn) {
+      const card = btn.closest('.news-card');
+      const title = card.querySelector('.news-title').innerText;
+      const content = card.querySelector('.news-content').innerText;
+      const text = `${title}\n\n${content}`;
+
+      const blob = new Blob([text], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = title.replace(/\s+/g, '_') + '.txt';
+      link.click();
+    }
+  </script>
+</body>
+
+</html>
